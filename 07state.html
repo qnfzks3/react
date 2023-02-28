@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>State</title>
+    <style>
+        .red { color: red; }
+        .green { color: green; }
+        .blue { color: blue; }
+        #root3 { color: red; font-style: italic }
+    </style>
+</head>
+<body>
+<div id="root1"></div>
+<div id="root2"></div>
+<div id="root3"></div>
+<div id="root4"></div>
+<div id="root5"></div>
+<div id="root6"></div>
+<div id="root7"></div>
+
+<script src="js/vendor/react/react@16.14.dev.js"></script>
+<script src="js/vendor/react/react-dom@16.14.dev.js"></script>
+<script src="js/vendor/babel.min.js"></script>
+
+<script type="text/babel">
+    // state
+    // state는 변경 값 [기존 변수,변경할 변수]
+    // 컴퍼넌트의 상태를 나타내는 변수
+    // 즉 , 컴퍼넌트 내에서 상황에 따른 변경이 발생하는 값을 관리하기 위해 사용
+    // state 의 값이 변경되는 경우 react 가 그 부분만 자동으로 재렌더링 함
+
+    const {useState,Fragment}= React;//이렇게 선언하면 <Fragment> 를  <> 그냥 이렇게만 적어도 된다.
+    const Counter=()=>{
+        const [count, setCount] = useState(0);  // setCount 는 count값을 변경하기 위한 변수
+
+        return (
+            <>
+                <p> count : {count}</p>
+                <div>
+                    <button type="button" onClick={ ()=>{setCount(count+1)} }> 증가 </button>
+                    <button type="button" onClick={ ()=>{setCount(count-1)} }> 감소 </button>
+                </div>
+
+            </>
+
+        );
+    }
+
+
+
+    // -------------------------------
+    ReactDOM.render(<Counter  />, document.querySelector('#root1'));
+
+
+
+    //ReactDOM.render(<Hello4 />, document.querySelector('#root4'));
+
+    //ReactDOM.render(<Hello5 />, document.querySelector('#root5'));
+
+    //ReactDOM.render(<Hello6 />, document.querySelector('#root6'));
+
+    //ReactDOM.render(<Hello7 />, document.querySelector('#root7'));      //jsx 면 이렇게 사용
+
+</script>
+</body>
+</html>
