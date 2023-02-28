@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>React Component</title>
+    <style>
+        .red { color: red; }
+        .green { color: green; }
+        .blue { color: blue; }
+        #root3 { color: red; font-style: italic }
+    </style>
+</head>
+<body>
+<div id="root1"></div>
+<div id="root2"></div>
+<div id="root3"></div>
+<div id="root4"></div>
+<div id="root5"></div>
+<div id="root6"></div>
+<div id="root7"></div>
+
+<script src="js/vendor/react/react@16.14.dev.js"></script>
+<script src="js/vendor/react/react-dom@16.14.dev.js"></script>
+<script src="js/vendor/babel.min.js"></script>
+
+<script type="text/babel">
+    // props
+    // 외부에서 컴퍼넌트 내부에 전달하는 인수 argument
+    // 전달하는 인수는 변수명 자체로 사용할 수 있고 인수가 여러 개 인 경우 props 하나로 받을 수 있다.
+    // props 를 컴퍼넌트 내부에서 출력할 때는 {props. 이름} 형태로 사용
+    //만일 , 기본 속성을 정의하려면 defaultProps 를 이용
+
+    const Hello1 = ({name}) => {
+        return <h1>Hello, {name}!!</h1>;
+    }
+
+    const Hello2 = ({name},{color}) => {   // 이렇게 두개의 값을 넘길 때는 하나의 값으로 만들어주어야한다.
+        return <h1 className={color}>Hello, {name}!!</h1>;
+    }
+
+    // [a,b,c]=obj   -> 일단 함수에 써주면 안에 배열로 만들어진다.
+    const Hello3 = (props) => { // 이렇게 props 로 하나로 받아서 내부에서 꺼내서 써줄수 있다. - props는 그냥 써주고 아래 <Hello1 name='World' /> 이안에 정의
+        return <h1 className={props.color} style={{fontStyle: props.style}} > Hello, {props.name}!!</h1>;
+    }  //내생각엔 이렇게 하면 자동으로 배열안에 추가되는 것 같다.  -
+
+    Hello3.defaultProps={  //기본 prop 기본 값 정의 - Hello3 의 기본값을 정의 - 만약 아래 DOM에 다른 값으로 써준다면 변경한 다른 값으로 출력
+        name : 'React Props',
+        color : 'red',
+        style : 'italic'
+    };
+
+
+    // -------------------------------
+    ReactDOM.render(<Hello1 name='World' />, document.querySelector('#root1'));
+    ReactDOM.render(<Hello1 name='React' />, document.querySelector('#root2'));
+
+
+    // -------------------------------
+    ReactDOM.render(<Hello2 name='React' color='red' /> , document.querySelector('#root3'));
+    ReactDOM.render(<Hello2 name={<em>React</em>} color='blue' /> , document.querySelector('#root4')); // <em> 강조
+
+    ReactDOM.render(<Hello3 name='Express' color='green' style="italic" /> , document.querySelector('#root5'));
+    ReactDOM.render(<Hello3 name='SpringBoot' style="normal"  /> , document.querySelector('#root6'));
+
+
+
+    //ReactDOM.render(<Hello4 />, document.querySelector('#root4'));
+
+    //ReactDOM.render(<Hello5 />, document.querySelector('#root5'));
+
+    //ReactDOM.render(<Hello6 />, document.querySelector('#root6'));
+
+    //ReactDOM.render(<Hello7 />, document.querySelector('#root7'));      //jsx 면 이렇게 사용
+
+</script>
+</body>
+</html>
