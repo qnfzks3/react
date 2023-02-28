@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title> 어떤 조리법 </title>
     <style>
-        .root2 { color: orange; }
-        #root3 { color: red; font-style: italic }
+        #root1 { color: orange; }
+        #root2 { color: red; font-style: italic }
     </style>
 
 
@@ -15,13 +15,6 @@
 <body>
 <div id="root1"></div>
 <div id="root2"></div>
-
-
-
-
-
-
-
 
 
 
@@ -77,10 +70,15 @@
         "오븐에서 그릇을 꺼내서 15분간 식힌다음에 상추를 곁들여서 내놓는다."
     ];
 
-    const Food2=()=>{
+    const Food2=()=>{ //map 각 요소의 목록을 의미
         let itemJSX =items.map(val=>  <li key={val} > {val} </li> );   // 각 각 아이템에 있는 요소 개수만큼의 횟수를 val 에 넣어서 리스트화해준다. - items.map
-        let instructsJSX = instructs.map(val=> <p key={val}>{val} </p>); //
-
+        let instructsJSX = instructs.map(val=> <p key={val}>{val} </p>); //1. key의 경우 우리가 속성을 변경하면 react는 변경된 모든 요소를 다시 렌더링 해야한다.
+                                                                          // 하지만 이렇게 key 속성을 부여하여 React가 변경된 부분만 업데이트하도록 할 수 있습니다.
+                                                                          // val을 사용해준 이유는 배열에 각 요소를 구별할 수 있는 고유값으로 사용해야하기때문-
+                                                                         //이렇게 react를 변경된 부분만 업데이트하여 성능을 최적화한다.
+                                                                        // 2. 키를 고유값 val에 넣어서 사용하는 이유 - 이렇게 안하면 왜 에러가 날까?
+                                                                         //  테그가 같은 값들인 <p>가 이렇게 정의 되어있다.
+                                                                         //  테그 <p> 값들이다르지만 다 <p>이기에 고유값 val로 지정해야한다.
         return(
             <section id="baked-salmon">
                 <h1>{menu}</h1>
@@ -98,7 +96,7 @@
 
 
 
-    ReactDOM.render(React.createElement(Food1), document.querySelector('#root1'));
+    ReactDOM.render(React.createElement(Food1), document.querySelector('#root1'));  //나타내어라 루트 1을!
 
     ReactDOM.render(React.createElement(Food2), document.querySelector('#root2'));
 

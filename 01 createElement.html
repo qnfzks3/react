@@ -23,7 +23,8 @@
 
   <script>
     // createElement (요소, 속성, 내용, 자식요소)
-    //render(대상요소,DOM요소)
+    //render(대상요소,DOM요소)   --ReactDOM 라이브러리 안에 있는 함수로써 화면에 대상 요소를 dom 요소 안에 나타내어라.
+    // ReactDOM 은 리액트 라이브러리로 만들어진 내용 컨퍼넌트를 화면에 렌더링 하는데 사용하는 라이브러리
 
     ReactDOM.render(
             //<h1>Hello, World!!</h1>
@@ -58,8 +59,8 @@
             React.createElement(
                     'h3',
                     {
-                      className:'abc',
-                      style: {textAlign: 'center'},
+                      className:'abc',                   // 이렇게 할 경우 클라스로 정의해서 한다- (한개만 적기 가능하기때문에)
+                      style: {textAlign: 'center'},      //클라스 abc 정의
                       onClick:()=>{alert(`Hello,Again~!!`)}
                     },
                     'Hello,Another World!!'
